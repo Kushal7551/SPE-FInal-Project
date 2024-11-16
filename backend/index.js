@@ -40,7 +40,10 @@ app.post('/read-csv', (req, res) => {
 const { spawn } = require('child_process');
 const runPythonScript = (inputData) => {
     return new Promise((resolve, reject) => {
-        const pythonProcess = spawn('python3', ['sentimentAnalysis.py']); 
+        const scriptPath = path.join(__dirname, 'sentimentAnalysis.py');
+        // const scriptPath = path.join(__dirname, 'model-1', 'sentimentAnalysis.py');
+        // console.log(scriptPath);
+        const pythonProcess = spawn('python3',[scriptPath]); 
         pythonProcess.stdin.write(JSON.stringify(inputData));
         pythonProcess.stdin.end();
         let result = '';
@@ -70,9 +73,10 @@ const input = { number: 5 };
 
 app.post('/sample', async (req, res) => {
     const fileName = 'stock_sentimentScore.csv';
+    // const filePath = path.join(__dirname, 'model-1', fileName);
     const filePath = path.join(__dirname, fileName);
 
-    const checkFileInterval = 30; // Set the interval to 3 seconds
+    const checkFileInterval = 3000; // Set the interval to 3 seconds
     const maxAttempts = 10; // Maximum number of polling attempts
     let attempts = 0;
 

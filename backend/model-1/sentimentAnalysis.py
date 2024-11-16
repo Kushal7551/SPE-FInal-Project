@@ -9,7 +9,6 @@ import requests
 import pandas as pd
 from datetime import datetime, timedelta
 
-# input_data = json.loads(sys.stdin.read())
 
 api_key = "dbe0bf42faf44f41917591471d452cdf"  
 
