@@ -22,13 +22,13 @@ pipeline {
 
         stage('Preprocess Data') {
             steps {
-                sh '. venv/bin/activate &&  python3 backend/StockTradingRL/preprocess_data.py stock_data.csv'
+                sh '. venv/bin/activate &&  python3 backend/StockTradingRL/preprocess_data.py ADANIPOWER.csv'
             }
         }
 
         stage('Train and Backtest Model') {
             steps {
-                sh '. venv/bin/activate && python3 backend/StockTradingRL/train_and_backtest.py stock_data.csv'
+                sh '. venv/bin/activate && python3 backend/StockTradingRL/train_and_backtest.py ADANIPOWER.csv'
             }
         }
     }
