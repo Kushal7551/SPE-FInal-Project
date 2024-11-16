@@ -42,7 +42,7 @@ def test_environment_initialization(sample_data):
     env = StockTradingEnv(sample_data)
     obs = env.reset()
 
-    assert obs.shape[0] == sample_data.shape[1] - 3 + 2, "Observation shape mismatch."
+    assert obs.shape[0] == sample_data.shape[1] - 3 + 4, "Observation shape mismatch."
     assert env.cash == 100000, "Initial cash is not set correctly."
     assert env.stock_held == 0, "Initial stock held is not set correctly."
 
