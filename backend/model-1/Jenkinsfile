@@ -13,11 +13,58 @@ pipeline {
                 // sh "ls"
             }
         }
-        stage("Stage 2: k"){
-            steps{
-                sh "node --version"
+        stage('Stage 2 : Initialize') {
+            steps {
+                script {
+                    // Install necessary Python packages
+                    sh "pip install -r requirements.txt"
+                }
             }
         }
+        stage('Stage 3 : Load and Preprocess Data') {
+            steps {
+                script {
+                    // Run data loading script
+                    sh "python data_loading.py"
+                }
+            }
+        }
+        stage('Stage 4 :Train Model') {
+            steps {
+                script {
+                    // Run model training script
+                    sh "python model_training.py"
+                }
+            }
+        }
+        stage('Stage 5 : Evaluate Model') {
+            steps {
+                script {
+                    // Run model evaluation script
+                    sh "python model_evaluation.py"
+                }
+            }
+        }
+        stage('Stage 6 :Serve Model') {
+            steps {
+                script {
+                    // Start FastAPI server in the background
+                    sh 'start /B python model_serving.py'
+                    sleep time: 10, unit: 'SECONDS'
+                }
+            }
+        }
+        stage('Stage 7 :Test Serve Model') {
+            steps {
+                script {
+                    // Test the server with sample values
+                    sh '''
+                        curl -X GET "http://127.0.0.1:8000/results"
+                    '''
+                }
+            }
+        }
+
 
         // stage("Stage 2: Backend Testing") {
         //     steps {
