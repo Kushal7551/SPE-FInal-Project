@@ -5,7 +5,6 @@ pipeline {
     agent any
     tools {nodejs "NODEJS"} 
     stages {
-        stages {
         stage("Stage 1: Git Clone") {
             steps {
                 git credentialsId: 'GitHub-Credentials', url: 'https://github.com/kushal7551/SPE-FInal-Project.git', branch: 'main'
@@ -53,5 +52,4 @@ pipeline {
             }
         }
     }
-}
 }
