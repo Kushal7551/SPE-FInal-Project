@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     // Run data loading script
-                    sh "python3 backend/model-1/data_loading.py"
+                    sh ". venv/bin/activate && python3 backend/model-1/data_loading.py"
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     // Run model training script
-                    sh "python3 backend/model-1/model_training.py"
+                    sh ". venv/bin/activate && python3 backend/model-1/model_training.py"
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     // Run model evaluation script
-                    sh "python3 backend/model-1/model_evaluation.py"
+                    sh ". venv/bin/activate && python3 backend/model-1/model_evaluation.py"
                 }
             }
         }
