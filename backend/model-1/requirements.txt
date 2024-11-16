@@ -5,3 +5,4 @@ transformers
 requests
 fastapi
 uvicorn
+pytest

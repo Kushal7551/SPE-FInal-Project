@@ -46,6 +46,14 @@ pipeline {
                 }
             }
         }
+        stage('Stage 6 : Unit Testing') {
+            steps {
+                script {
+                    // Run model evaluation script
+                    sh ". venv/bin/activate && pytest backend/model-1/test_model.py"
+                }
+            }
+        }
         
     }
 }
