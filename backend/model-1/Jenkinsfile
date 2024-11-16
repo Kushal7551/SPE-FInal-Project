@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     // Run model evaluation script
-                    sh ". venv/bin/activate && pytest backend/model-1/test_model.py"
+                    sh ". venv/bin/activate && pytest backend/model-1/test_model_1.py"
                 }
             }
         }
