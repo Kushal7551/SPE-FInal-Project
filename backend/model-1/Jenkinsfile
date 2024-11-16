@@ -18,7 +18,7 @@ pipeline {
                 script {
                     sh "python3 -m venv venv"
                     // Install necessary Python packages
-                    sh ". venv/bin/activate && pip install -r requirements.txt"
+                    sh ". venv/bin/activate && pip install -r backend/model-1/requirements.txt"
                 }
             }
         }
