@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+  model1:
+    build: ./model1
+    networks:
+      - app-network
+
+  model2:
+    build: ./model2
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
