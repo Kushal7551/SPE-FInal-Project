@@ -31,5 +31,13 @@ pipeline {
                 sh '. venv/bin/activate && python3 backend/StockTradingRL/train_and_backtest.py backend/StockTradingRL/ADANIPOWER.csv'
             }
         }
+        stage('Unit Testing') {
+            steps {
+                script {
+                    // Run model evaluation script
+                    sh ". venv/bin/activate && pytest backend/StockTradingRL/test_stocktradingRL.py"
+                }
+            }
+        }
     }
 }
