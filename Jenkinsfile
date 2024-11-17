@@ -34,7 +34,8 @@ pipeline {
         stage("Stage 4: Creating Docker Image for frontend") {
             steps {
                 sh '''
-                cd SPE-FInal-Project/frontend
+                cd frontend
+                ls
                 /usr/local/bin/docker build -t kushal7551/frontend:latest .
                 '''
             }
