@@ -1,29 +1,37 @@
-version: "3.8"
+version: '3.7'
+
 services:
-  backend:
-    build: ./backend
+  server:
+    image: kushal7551/backend:latest
+    container_name: myapp-node-server
     ports:
-      - "3000:3000"
+      - "8000:8000"
+    environment:
+      - NODE_ENV=development
     networks:
       - app-network
+    depends_on:
+      - client
+    volumes:
+      - /app/node_modules
+    dns:
+      - 8.8.8.8  # Use Google's public DNS to ensure proper DNS resolution
 
-  frontend:
-    build: ./frontend
+  client:
+    image: kushal7551/frontend:latest
+    container_name: myapp-react-client
     ports:
-      - "3001:3001"
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
     networks:
       - app-network
-
-  model1:
-    build: ./model1
-    networks:
-      - app-network
-
-  model2:
-    build: ./model2
-    networks:
-      - app-network
+    volumes:
+      - /app/node_modules
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  node_modules:
