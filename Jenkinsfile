@@ -9,9 +9,8 @@ pipeline {
             steps {
                 sh '''
                 [ -d SPE-FInal-Project ] && rm -rf SPE-FInal-Project
-                git clone https://github.com/kushal7551/SPE-FInal-Project.git
                 '''
-                // git credentialsId: 'GitHub-Credentials', url: 'https://github.com/kushal7551/SPE-FInal-Project.git', branch: 'main'
+                git credentialsId: 'GitHub-Credentials', url: 'https://github.com/kushal7551/SPE-FInal-Project.git', branch: 'main'
             }
         }
 
