@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh '''
                 npm install jest --save-dev
-                cd SPE-FInal-Project/backend
+                cd backend
                 npm install
                 npm test
                 '''
@@ -25,7 +25,7 @@ pipeline {
         stage("Stage 3: Frontend Testing") {
             steps {
                 sh '''
-                cd SPE-FInal-Project/frontend
+                cd frontend
                 npm install
                 '''
             }
