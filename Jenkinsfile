@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh '''
                 cd frontend
-                docker build -t kushal7551/frontend:latest .
+                /usr/local/bin/docker build -t kushal7551/frontend:latest .
                 '''
             }
         }
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 sh '''
                 cd backend
-                docker build -t kushal7551/backend:latest .
+                /usr/local/bin/docker build -t kushal7551/backend:latest .
                 '''
             }
         }
@@ -52,8 +52,8 @@ pipeline {
         stage("Stage 6: Push Frontend Docker Image") {
             steps {
                 sh '''
-                docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
-                docker push kushal7551/frontend:latest
+                /usr/local/bin/docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
+                /usr/local/bin/docker push kushal7551/frontend:latest
                 '''
             }
         }
@@ -61,8 +61,8 @@ pipeline {
         stage("Stage 7: Push Backend Docker Image") {
             steps {
                 sh '''
-                docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
-                docker push kushal7551/backend:latest
+                /usr/local/bin/docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
+                /usr/local/bin/docker push kushal7551/backend:latest
                 '''
             }
         }
