@@ -7,7 +7,11 @@ pipeline {
     stages {
         stage("Stage 1: Git Clone") {
             steps {
-                git credentialsId: 'GitHub-Credentials', url: 'https://github.com/kushal7551/SPE-FInal-Project.git', branch: 'main'
+                sh '''
+                rm -rf SPE-FInal-Project
+                git clone https://github.com/kushal7551/SPE-FInal-Project.git
+                '''
+                // git credentialsId: 'GitHub-Credentials', url: 'https://github.com/kushal7551/SPE-FInal-Project.git', branch: 'main'
             }
         }
 
