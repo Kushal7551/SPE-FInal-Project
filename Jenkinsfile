@@ -14,6 +14,7 @@ pipeline {
         stage("Stage 2: Backend Testing") {
             steps {
                 sh '''
+                npm install jest --save-dev
                 cd backend
                 npm install
                 npm test

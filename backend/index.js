@@ -131,6 +131,15 @@ app.post('/sample', async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
+if (require.main === module) {
+    // Only start the server if this file is executed directly
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app; // Export the app for testing
