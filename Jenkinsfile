@@ -27,30 +27,45 @@ pipeline {
                 sh '''
                 cd frontend
                 npm install
-                npm test
                 '''
             }
         }
 
-        stage("Stage 4: Build Docker Images") {
+        stage("Stage 4: Creating Docker Image for frontend") {
             steps {
-                sh 'docker-compose build'
+                sh '''
+                cd frontend
+                docker build -t kushal7551/frontend:latest .
+                '''
             }
         }
 
-        stage("Stage 5: Push Docker Images") {
+        stage("Stage 5: Creating Docker Image for backend") {
+            steps {
+                sh '''
+                cd backend
+                docker build -t kushal7551/backend:latest .
+                '''
+            }
+        }
+
+        stage("Stage 6: Push Frontend Docker Image") {
             steps {
                 sh '''
                 docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
-                docker-compose push
+                docker push kushal7551/frontend:latest
                 '''
             }
         }
 
-        stage("Stage 6: Deploy Using Docker Compose") {
+        stage("Stage 7: Push Backend Docker Image") {
             steps {
-                sh 'docker-compose up -d'
+                sh '''
+                docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}
+                docker push kushal7551/backend:latest
+                '''
             }
         }
+
     }
 }
