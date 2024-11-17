@@ -1,6 +1,6 @@
 #  Dockerfile for  Backend
 
-FROM node:18
+FROM node:18.12.1
 
 # Create App Directory
 RUN mkdir -p /app
@@ -11,10 +11,11 @@ COPY package*.json ./
 
 RUN npm install 
 
-# Copy app source code
+RUN npm install -g nodemon
+# Copy app source codedocke
 COPY . .
 
 # Exports
-EXPOSE 8000
+EXPOSE 3000
 
 CMD ["npm","run","dev"]
